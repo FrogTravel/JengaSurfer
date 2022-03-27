@@ -9,10 +9,8 @@ public class LavaDestroyCube : MonoBehaviour
     {
         if (other.CompareTag("FriendlyCube"))
         {
-            other.GetComponentInParent<CubeController>().RemoveCube();
-            other.transform.parent = null;
+            other.GetComponentInParent<CubeController>().RemoveCube(other.GetComponent<Cube>());
             Destroy(other);
-            Debug.Log("Friendly CUbe");
         }
     }
 }

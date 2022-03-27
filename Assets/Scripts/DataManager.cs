@@ -7,7 +7,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     [SerializeField] private int _currentLevel;
-    [SerializeField] private int totalNumberOfLevels;
+    [SerializeField] private int _totalNumberOfLevels;
 
     public int CoinsAmount;
 
@@ -22,6 +22,8 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(Instance);
         LoadData();
+
+        ResetData(); //TODO remove!!
 
         SceneManager.LoadScene(_currentLevel);
     }
@@ -51,23 +53,15 @@ public class DataManager : MonoBehaviour
     // 9 | 0     | 0   | 3
     public int GetNextLevelNumberAndUpdateLevel()
     {
-        if(_currentLevel < totalNumberOfLevels)
+        if (_currentLevel < _totalNumberOfLevels)
         {
             return ++_currentLevel;
         }
         else
         {
-            int levelMod = (++_currentLevel % totalNumberOfLevels);
-            return levelMod == 0 ? totalNumberOfLevels : levelMod;
+            int levelMod = (++_currentLevel % _totalNumberOfLevels);
+            return levelMod == 0 ? _totalNumberOfLevels : levelMod;
         }
-    }
-
-
-    // Session data persistent
-    [System.Serializable]
-    class Save{
-        public int coins;
-        public int level;
     }
 
     public void SaveData()
@@ -86,7 +80,7 @@ public class DataManager : MonoBehaviour
 
     public void SetTotalNumberOfLevels(int levels)
     {
-        totalNumberOfLevels = levels - 1;
+        _totalNumberOfLevels = levels - 1;
     }
 
     public void ResetData()

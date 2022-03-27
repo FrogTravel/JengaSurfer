@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
         _characterController = GetComponent<CharacterController>();
 
         _cubeController.AddCubes(InitialSizeOfCubeStack);
-
-        StartCoroutine(MonitorNumberOfCubes());
     }
 
     public void StartMoving()
@@ -58,49 +56,45 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    IEnumerator MonitorNumberOfCubes()
-    {
-        for (; ; )
-        {
-            _cubeController.NumberOfCubes = transform.GetComponentsInChildren<Cube>().Length;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
-
 
     // Moving players stack cubes if we are in edit then with arrows
     // if it is build then with mobile drag touch
     private void MoveCube()
     {
-//        transform.Translate(_speed * Time.deltaTime * Vector3.forward); // Move forward
-//#if UNITY_EDITOR
-//        float horizontalInput = Input.GetAxis("Horizontal");
-//        transform.Translate(horizontalInput * Time.deltaTime * Vector3.right * MaxSpeed);
-//#else
+        transform.Translate(_speed * Time.deltaTime * Vector3.forward); // Move forward
 
-//        if (Input.touchCount > 0)
-//        {
-//            theTouch = Input.GetTouch(0);
-//            if (theTouch.phase == TouchPhase.Began && touchStartPosition == Vector2.zero)
-//            {
-//                touchStartPosition = theTouch.position;
-//            }
-//            else if (theTouch.phase == TouchPhase.Moved)
-//            {
-//                touchEndPosition = theTouch.position;
+        Vector2 position = new(transform.position.x, transform.position.z);
 
-//                float x = touchEndPosition.x - touchStartPosition.x;
+        _cubeController.UpdatePosition(position);
+        _characterController.UpdatePosition(position);
 
-//                transform.Translate(_controllerSpeed  * x * Time.deltaTime * Vector3.right * MaxSpeed);
-//            }else if(theTouch.phase == TouchPhase.Ended)
-//            {
-//                touchStartPosition = Vector2.zero; 
-//            }
-//        }
-//#endif
+#if UNITY_EDITOR
+        float horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(horizontalInput * Time.deltaTime * Vector3.right * MaxSpeed);
+#else
+
+        if (Input.touchCount > 0)
+        {
+            theTouch = Input.GetTouch(0);
+            if (theTouch.phase == TouchPhase.Began && touchStartPosition == Vector2.zero)
+            {
+                touchStartPosition = theTouch.position;
+            }
+            else if (theTouch.phase == TouchPhase.Moved)
+            {
+                touchEndPosition = theTouch.position;
+
+                float x = touchEndPosition.x - touchStartPosition.x;
+
+                transform.Translate(_controllerSpeed  * x * Time.deltaTime * Vector3.right * MaxSpeed);
+            }else if(theTouch.phase == TouchPhase.Ended)
+            {
+                touchStartPosition = Vector2.zero; 
+            }
+        }
+#endif
     }
 
     // Touch Friendly (Yellow) Stack
