@@ -7,9 +7,11 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     [SerializeField] private int _currentLevel;
-    [SerializeField] public int CoinsAmount;
+    [SerializeField] private int totalNumberOfLevels;
 
-    // Start is called before the first frame update
+    public int CoinsAmount;
+
+    // Start is called before the first frame 
     void Awake()
     {
         if (Instance != null)
@@ -34,13 +36,30 @@ public class DataManager : MonoBehaviour
         _currentLevel++;
     }
 
+
+    // Example of level computation
+    //   | mod 3 | res |
+    // 0 | 0     | 0   | 0
+    // 1 | 1     | 1   | 1
+    // 2 | 2     | 2   | 2
+    // 3 | 0     | 0   | 3
+    // 4 | 1     | 1   | 1
+    // 5 | 2     | 2   | 2
+    // 6 | 0     | 0   | 3
+    // 7 | 1     | 1   | 1
+    // 8 | 2     | 2   | 2
+    // 9 | 0     | 0   | 3
     public int GetNextLevelNumberAndUpdateLevel()
     {
-        if (_currentLevel > 3) // Level looping
+        if(_currentLevel < totalNumberOfLevels)
         {
-            _currentLevel = 1; // So we will start from second level
+            return ++_currentLevel;
         }
-        return _currentLevel;
+        else
+        {
+            int levelMod = (++_currentLevel % totalNumberOfLevels);
+            return levelMod == 0 ? totalNumberOfLevels : levelMod;
+        }
     }
 
 
@@ -53,32 +72,31 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        string path = Application.persistentDataPath + "/savefile28.json";
+        PlayerPrefs.SetInt("Coins", CoinsAmount);
+        PlayerPrefs.SetInt("Level", _currentLevel);
 
-        Save save = new();
-        save.coins = CoinsAmount;
-        save.level = _currentLevel;
-
-        string json = JsonUtility.ToJson(save);
-        File.WriteAllText(path, json);
+        PlayerPrefs.Save();
     }
 
     public void LoadData()
     {
-        string path = Application.persistentDataPath + "/savefile28.json";
-        try
-        {
-            string json = File.ReadAllText(path);
-            Save save = JsonUtility.FromJson<Save>(json);
+        CoinsAmount = PlayerPrefs.GetInt("Coins");
+        _currentLevel = PlayerPrefs.GetInt("Level");
+    }
 
-            _currentLevel = save.level;
-            CoinsAmount = save.coins;
-        }
-        catch (FileNotFoundException)
-        {
-            _currentLevel = 0;
-            CoinsAmount = 0;
-        }
-        
+    public void SetTotalNumberOfLevels(int levels)
+    {
+        totalNumberOfLevels = levels - 1;
+    }
+
+    public void ResetData()
+    {
+        PlayerPrefs.SetInt("Coins", 0);
+        PlayerPrefs.SetInt("Level", 0);
+
+        CoinsAmount = 0;
+        _currentLevel = 0;
+
+        PlayerPrefs.Save();
     }
 }

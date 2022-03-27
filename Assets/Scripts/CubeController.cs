@@ -33,7 +33,7 @@ public class CubeController : MonoBehaviour
         NumberOfCubes += numberOfCubes;
     }
 
-    public float getTopY()
+    public float GetTopY()
     {
         return transform.position.y + _cubeHeight * (NumberOfCubes + 1) + _offset;
     }

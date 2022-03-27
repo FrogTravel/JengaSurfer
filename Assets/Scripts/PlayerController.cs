@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPointerDownHandler
 {
     public float MaxSpeed = 10;
     public int InitialSizeOfCubeStack = 1;
@@ -69,36 +70,37 @@ public class PlayerController : MonoBehaviour
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
 
+
     // Moving players stack cubes if we are in edit then with arrows
     // if it is build then with mobile drag touch
     private void MoveCube()
     {
-        transform.Translate(_speed * Time.deltaTime * Vector3.forward); // Move forward
-#if UNITY_EDITOR
-        float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(horizontalInput * Time.deltaTime * Vector3.right * MaxSpeed);
-#else
+//        transform.Translate(_speed * Time.deltaTime * Vector3.forward); // Move forward
+//#if UNITY_EDITOR
+//        float horizontalInput = Input.GetAxis("Horizontal");
+//        transform.Translate(horizontalInput * Time.deltaTime * Vector3.right * MaxSpeed);
+//#else
 
-        if (Input.touchCount > 0)
-        {
-            theTouch = Input.GetTouch(0);
-            if (theTouch.phase == TouchPhase.Began && touchStartPosition == Vector2.zero)
-            {
-                touchStartPosition = theTouch.position;
-            }
-            else if (theTouch.phase == TouchPhase.Moved)
-            {
-                touchEndPosition = theTouch.position;
+//        if (Input.touchCount > 0)
+//        {
+//            theTouch = Input.GetTouch(0);
+//            if (theTouch.phase == TouchPhase.Began && touchStartPosition == Vector2.zero)
+//            {
+//                touchStartPosition = theTouch.position;
+//            }
+//            else if (theTouch.phase == TouchPhase.Moved)
+//            {
+//                touchEndPosition = theTouch.position;
 
-                float x = touchEndPosition.x - touchStartPosition.x;
+//                float x = touchEndPosition.x - touchStartPosition.x;
 
-                transform.Translate(_controllerSpeed  * x * Time.deltaTime * Vector3.right * MaxSpeed);
-            }else if(theTouch.phase == TouchPhase.Ended)
-            {
-                touchStartPosition = Vector2.zero; 
-            }
-        }
-#endif
+//                transform.Translate(_controllerSpeed  * x * Time.deltaTime * Vector3.right * MaxSpeed);
+//            }else if(theTouch.phase == TouchPhase.Ended)
+//            {
+//                touchStartPosition = Vector2.zero; 
+//            }
+//        }
+//#endif
     }
 
     // Touch Friendly (Yellow) Stack
@@ -111,7 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             InstantiateCubeStack cubeStack = other.gameObject.GetComponent<InstantiateCubeStack>();
             _cubeController.AddCubes(cubeStack.NumberOfCubes);
-            _characterController.JumpToNewCube(_cubeController.getTopY());
+            _characterController.JumpToNewCube(_cubeController.GetTopY());
             _audioClip.Play();
             Destroy(other.gameObject);
         }
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        StartCoroutine(Reset());
+        StartCoroutine(ResetTriggeringOnTriggerExit());
 
         if (other.CompareTag("Finish"))
         {
@@ -170,9 +172,14 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    IEnumerator Reset()
+    IEnumerator ResetTriggeringOnTriggerExit()
     {
         yield return new WaitForEndOfFrame();
         _isTriggering = false;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("Down");
     }
 }
