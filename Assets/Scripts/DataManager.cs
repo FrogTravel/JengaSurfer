@@ -33,12 +33,6 @@ public class DataManager : MonoBehaviour
         return _currentLevel;
     }
 
-    public void UpdateLevelByOne()
-    {
-        _currentLevel++;
-    }
-
-
     // Example of level computation
     //   | mod 3 | res |
     // 0 | 0     | 0   | 0

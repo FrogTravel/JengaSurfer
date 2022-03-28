@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
 
         Vector2 position = new(transform.position.x, transform.position.z);
 
+        // Updating position of child objects
         _cubeController.UpdatePosition(position);
         _characterController.UpdatePosition(position);
 
@@ -165,7 +166,6 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
         }
     }
     
-
     IEnumerator ResetTriggeringOnTriggerExit()
     {
         yield return new WaitForEndOfFrame();

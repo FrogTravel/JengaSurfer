@@ -12,7 +12,7 @@ public class LevelNumberTests
         // Use the Assert class to test conditions
     }
 
-    int[] levels3Order = { 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 };
+    int[] levels3Order = { 0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 };
     // Test checks level order and level looping behavior
     [UnityTest]
     public IEnumerator LevelLoopingWith4TotalLevels()
@@ -29,13 +29,15 @@ public class LevelNumberTests
         dm.ResetData();
         dm.SetTotalNumberOfLevels(4);
 
-        for(int i = 0; i < levels3Order.Length; i++)
+        Assert.AreEqual(levels3Order[0], dm.GetCurrentLevelNumber());
+
+        for(int i = 1; i < levels3Order.Length; i++)
         {
             Assert.AreEqual(levels3Order[i], dm.GetNextLevelNumberAndUpdateLevel());
         }
     }
 
-    int[] levels5Order = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
+    int[] levels5Order = { 0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
     [UnityTest]
     public IEnumerator LevelLoopingWith6TotalLevels()
     {
@@ -49,7 +51,9 @@ public class LevelNumberTests
         dm.ResetData();
         dm.SetTotalNumberOfLevels(6);
 
-        for (int i = 0; i < levels5Order.Length; i++)
+        Assert.AreEqual(levels3Order[0], dm.GetCurrentLevelNumber());
+
+        for (int i = 1; i < levels5Order.Length; i++)
         {
             Assert.AreEqual(levels5Order[i], dm.GetNextLevelNumberAndUpdateLevel());
         }

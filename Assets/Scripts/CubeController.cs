@@ -3,21 +3,18 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    public int NumberOfCubes  {
-           get{
-            return _cubes.Count;
-        }
-    }
+    public int NumberOfCubes => _cubes.Count;
     [SerializeField] private GameObject _playerCubePrefab;
     [SerializeField] private float _offset = 0.2f;
     private float _cubeHeight;
 
     private HashSet<Cube> _cubes = new(); // Here we store all the cubes in the stack beneath character
 
+
     private void Start()
     {
         BoxCollider bc = _playerCubePrefab.GetComponent<BoxCollider>();
-        _cubeHeight = bc.size.y;
+        _cubeHeight = bc.size.y * _playerCubePrefab.transform.localScale.y;
     }
 
     // Instantiate new cubes for our player stack
@@ -51,15 +48,6 @@ public class CubeController : MonoBehaviour
         _cubes.Remove(cube);
         cube.Remove();
     }
-
-    //TODO how to remove the triggered cube 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("EnemyCube"))
-    //    {
-    //        other.GetComponent<Cube>().Remove();
-    //    }
-    //}
 
     public void UpdatePosition(Vector2 positionXZ)
     {

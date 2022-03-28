@@ -11,7 +11,7 @@ public class InstantiateCubeStack : MonoBehaviour
     void Start()
     {
         _cubeBoxCollider = CubePrefab.GetComponent<BoxCollider>();
-        _cubeHeight = _cubeBoxCollider.size.y;
+        _cubeHeight = _cubeBoxCollider.size.y * CubePrefab.transform.localScale.y;
         DrawCubes();
     }
 

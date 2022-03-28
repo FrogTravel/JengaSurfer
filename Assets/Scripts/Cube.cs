@@ -8,22 +8,13 @@ public class Cube : MonoBehaviour
     public TextMeshProUGUI Text;
     private float _showLabelForSeconds = 0.5f;
 
-    // If players cube collide with enemy cubes then
-    // player will not be the parent of collided cube
-    // and the cube will not move with player
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("EnemyCube"))
-    //    {
-    //        transform.parent = null;
-    //    }
-    //}
 
     public void Remove()
     {
         transform.parent = null;
     }
 
+    // So the cube will always be with player parent 
     public void SetPositionXZ(Vector2 positionXZ)
     {
         transform.position = new Vector3(positionXZ.x, transform.position.y, positionXZ.y);

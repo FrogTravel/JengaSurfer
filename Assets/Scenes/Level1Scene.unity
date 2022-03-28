@@ -1336,8 +1336,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1327711532}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1327711535}
+        m_TargetAssemblyTypeName: NextLevelController, Scripts
         m_MethodName: OnNextLevel
         m_Mode: 1
         m_Arguments:
@@ -1616,6 +1616,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1327711533}
   - component: {fileID: 1327711532}
+  - component: {fileID: 1327711536}
+  - component: {fileID: 1327711535}
+  - component: {fileID: 1327711534}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1635,19 +1638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d626318594b4b51934fca64cffbf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 917353714}
-  loseText: {fileID: 434388655}
-  finishText: {fileID: 1796056388}
-  titleText: {fileID: 727127868}
-  restartButton: {fileID: 304110044}
-  congratulations: {fileID: 1290671221}
-  nextLevelButton: {fileID: 919534882}
-  coinPrefab: {fileID: 5170289162959752674, guid: 400b85dff785c4da5870a899a4a0f79a,
-    type: 3}
-  coinDestination: {fileID: 637431289}
-  coinsAmountText: {fileID: 594771997}
-  animationDuration: 0.5
-  pauseBetweenCoinsInstantiation: 0.29
 --- !u!4 &1327711533
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,6 +1653,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1327711534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327711531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb09f0032a014b1e81ad92a4a8f71ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButton: {fileID: 917353714}
+  titleText: {fileID: 727127868}
+--- !u!114 &1327711535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327711531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ffbdf2a0b0f4fc78e5f43a231bc51d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevelButton: {fileID: 919534882}
+  coinPrefab: {fileID: 5170289162959752674, guid: 400b85dff785c4da5870a899a4a0f79a,
+    type: 3}
+  coinDestination: {fileID: 637431289}
+  congratulations: {fileID: 1290671221}
+  coinsAmountText: {fileID: 594771997}
+  finishText: {fileID: 1796056388}
+  animationDuration: 0.5
+  pauseBetweenCoinsInstantiation: 0.29
+--- !u!114 &1327711536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327711531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95d9d160feb044d0ae7ed7e999008b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseText: {fileID: 434388655}
+  restartButton: {fileID: 304110044}
 --- !u!4 &1334729544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3057417582610263299, guid: 623f094bd10f14e2984645eaab1e6a4a,
@@ -2693,7 +2732,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1327711532}
+      objectReference: {fileID: 1327711536}
+    - target: {fileID: 7181783762885016332, guid: 58f0154952e59458785d283c85cb25e5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181783762885016332, guid: 58f0154952e59458785d283c85cb25e5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FailedUIController, Scripts
+      objectReference: {fileID: 0}
     - target: {fileID: 7181783763030554091, guid: 58f0154952e59458785d283c85cb25e5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2748,7 +2797,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1327711532}
+      objectReference: {fileID: 1327711534}
+    - target: {fileID: 7181783763496474146, guid: 58f0154952e59458785d283c85cb25e5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnStartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181783763496474146, guid: 58f0154952e59458785d283c85cb25e5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StartController, Scripts
+      objectReference: {fileID: 0}
     - target: {fileID: 7181783763496474149, guid: 58f0154952e59458785d283c85cb25e5,
         type: 3}
       propertyPath: m_SizeDelta.x
