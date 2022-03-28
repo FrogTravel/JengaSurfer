@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
 
     public int CoinsAmount;
 
+
     // Start is called before the first frame 
     void Awake()
     {

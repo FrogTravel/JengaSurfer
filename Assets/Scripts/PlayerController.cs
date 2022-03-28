@@ -16,9 +16,10 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
     private CubeController _cubeController;
     private CharacterController _characterController;
 
+
     void Start()
     {
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
         _audioClip = _audioBlipSource.GetComponent<AudioSource>();
         _cubeController = GetComponent<CubeController>();
         _characterController = GetComponent<CharacterController>();

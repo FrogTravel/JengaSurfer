@@ -8,6 +8,7 @@ public class InstantiateCubeStack : MonoBehaviour
     private BoxCollider _cubeBoxCollider;
     private float _cubeHeight;
 
+
     void Start()
     {
         _cubeBoxCollider = CubePrefab.GetComponent<BoxCollider>();

@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// When the user fail the level
 public class FailedUIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI loseText;
     [SerializeField] private Button restartButton;
 
+    // Show or Hide UI
     public void SetActive(bool isActive)
     {
         loseText.gameObject.SetActive(isActive);

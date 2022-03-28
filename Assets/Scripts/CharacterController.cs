@@ -5,6 +5,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private GameObject _character;
     private Animator _animator;
 
+
     // Play default animation
     void Start()
     {
