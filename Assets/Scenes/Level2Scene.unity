@@ -207,8 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 281970878}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 281970881}
+        m_TargetAssemblyTypeName: NextLevelUIController, Scripts
         m_MethodName: OnNextLevel
         m_Mode: 1
         m_Arguments:
@@ -624,6 +624,9 @@ GameObject:
   m_Component:
   - component: {fileID: 281970879}
   - component: {fileID: 281970878}
+  - component: {fileID: 281970882}
+  - component: {fileID: 281970881}
+  - component: {fileID: 281970880}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -643,19 +646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d626318594b4b51934fca64cffbf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1982795448}
-  loseText: {fileID: 687526246}
-  finishText: {fileID: 586896389}
-  titleText: {fileID: 1115086058}
-  restartButton: {fileID: 885595351}
-  congratulations: {fileID: 609338764}
-  nextLevelButton: {fileID: 9729863}
-  coinPrefab: {fileID: 5170289162959752674, guid: 400b85dff785c4da5870a899a4a0f79a,
-    type: 3}
-  coinDestination: {fileID: 930313463}
-  coinsAmountText: {fileID: 667008298}
-  animationDuration: 0.5
-  pauseBetweenCoinsInstantiation: 0.5
 --- !u!4 &281970879
 Transform:
   m_ObjectHideFlags: 0
@@ -671,6 +661,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &281970880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281970877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb09f0032a014b1e81ad92a4a8f71ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButton: {fileID: 1982795448}
+  titleText: {fileID: 1115086058}
+--- !u!114 &281970881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281970877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ffbdf2a0b0f4fc78e5f43a231bc51d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevelButton: {fileID: 9729863}
+  coinPrefab: {fileID: 5170289162959752674, guid: 400b85dff785c4da5870a899a4a0f79a,
+    type: 3}
+  coinDestination: {fileID: 930313463}
+  congratulations: {fileID: 609338764}
+  coinsAmountText: {fileID: 667008298}
+  finishText: {fileID: 1115086058}
+  animationDuration: 0.5
+  pauseBetweenCoinsInstantiation: 0.29
+--- !u!114 &281970882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281970877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95d9d160feb044d0ae7ed7e999008b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseText: {fileID: 687526246}
+  restartButton: {fileID: 885595351}
 --- !u!1 &346715459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,8 +1822,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 281970878}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 281970882}
+        m_TargetAssemblyTypeName: FailedUIController, Scripts
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -2871,6 +2910,7 @@ GameObject:
   - component: {fileID: 1505939109}
   - component: {fileID: 1505939108}
   - component: {fileID: 1505939107}
+  - component: {fileID: 1505939111}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2967,6 +3007,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1505939111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505939106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff86317a605f542c3b1c1f01ab779897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputSensitivity: 0.5
 --- !u!1001 &1513451690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3495,8 +3548,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 281970878}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 281970880}
+        m_TargetAssemblyTypeName: StartUIController, Scripts
         m_MethodName: OnStartGame
         m_Mode: 1
         m_Arguments:

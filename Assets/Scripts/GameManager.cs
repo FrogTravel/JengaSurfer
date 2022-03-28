@@ -1,14 +1,11 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
-
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static StartUIController _startController;
-    private static NextLevelUIController _nextLevelController;
-    private static FailedUIController _failedUIController;
+    private static StartUIController s_startController;
+    private static NextLevelUIController s_nextLevelController;
+    private static FailedUIController s_failedUIController;
+    private static GameUIController s_gameUIController;
 
     private static PlayerController playerController;
 
@@ -17,31 +14,32 @@ public class GameManager : MonoBehaviour
         Start, Finish, Lose, Game
     }
 
-    private static GameModes _mode = GameModes.Start;
+    private static GameModes s_mode = GameModes.Start;
 
     public static GameModes CurrentMode
     {
-        get => _mode;
+        get => s_mode;
         set
         {
-            _mode = value;
-            ChangeUIState(_mode);
+            s_mode = value;
+            ChangeUIState(s_mode);
         }
     }
 
 
     void Start()
     {
-        playerController = GameObject.FindObjectOfType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
 
-        _startController = GetComponent<StartUIController>();
-        _nextLevelController = GetComponent<NextLevelUIController>();
-        _failedUIController = GetComponent<FailedUIController>();
+        s_startController = GetComponent<StartUIController>();
+        s_nextLevelController = GetComponent<NextLevelUIController>();
+        s_failedUIController = GetComponent<FailedUIController>();
+        s_gameUIController = GetComponent<GameUIController>();
 
         CurrentMode = GameModes.Start;
     }
 
-    public bool IsGameActive()
+    public static bool IsGameActive()
     {
         return CurrentMode == GameModes.Game;
     }
@@ -71,28 +69,32 @@ public class GameManager : MonoBehaviour
         switch (m)
         {
             case GameModes.Start:
-                _startController.SetActive(true);
-                _nextLevelController.SetActive(false);
-                _failedUIController.SetActive(false);
+                s_startController.SetActive(true);
+                s_nextLevelController.SetActive(false);
+                s_failedUIController.SetActive(false);
+                s_gameUIController.SetActive(false);
 
                 playerController.StartMoving();
                 break;
             case GameModes.Lose:
-                _startController.SetActive(false);
-                _nextLevelController.SetActive(false);
-                _failedUIController.SetActive(true);
+                s_startController.SetActive(false);
+                s_nextLevelController.SetActive(false);
+                s_failedUIController.SetActive(true);
+                s_gameUIController.SetActive(false);
                 break;
             case GameModes.Finish:
-                _startController.SetActive(false);
-                _nextLevelController.SetActive(true);
-                _failedUIController.SetActive(false);
+                s_startController.SetActive(false);
+                s_nextLevelController.SetActive(true);
+                s_failedUIController.SetActive(false);
+                s_gameUIController.SetActive(false);
 
                 playerController.StopMoving();
                 break;
             case GameModes.Game:
-                _startController.SetActive(false);
-                _nextLevelController.SetActive(false);
-                _failedUIController.SetActive(false);
+                s_startController.SetActive(false);
+                s_nextLevelController.SetActive(false);
+                s_failedUIController.SetActive(false);
+                s_gameUIController.SetActive(true);
                 break;
         }
     }

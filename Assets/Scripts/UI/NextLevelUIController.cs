@@ -16,13 +16,8 @@ public class NextLevelUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finishText;
     [SerializeField] private float animationDuration = 0.5f;
     [SerializeField] private float pauseBetweenCoinsInstantiation = 0.29f;
-    private Canvas canvas;
+    [SerializeField] private Canvas canvas;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        canvas = GameObject.FindObjectOfType<Canvas>();
-    }
 
     // Click button "Next level" when finish the level successfully
     public void OnNextLevel()
