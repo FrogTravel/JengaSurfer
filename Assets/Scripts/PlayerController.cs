@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         _speed = 0;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         {
             _turnedFor = 0;
         }
-
 
         StartCoroutine(ResetTriggeringOnTriggerExit());
 

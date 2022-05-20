@@ -11,31 +11,21 @@ public class NextLevelUIController : MonoBehaviour
     [SerializeField] private Button nextLevelButton;
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject coinDestination;
-    [SerializeField] private GameObject congratulations;
     [SerializeField] private TextMeshProUGUI coinsAmountText;
     [SerializeField] private TextMeshProUGUI finishText;
     [SerializeField] private float animationDuration = 0.5f;
     [SerializeField] private float pauseBetweenCoinsInstantiation = 0.29f;
     [SerializeField] private Canvas canvas;
-
-
-    // Click button "Next level" when finish the level successfully
-    public void OnNextLevel()
-    {
-        SceneManager.LoadScene(DataManager.Instance.GetNextLevelNumberAndUpdateLevel());
-
-        GameManager.CurrentMode = GameManager.GameModes.Start;
-    }
-
+    
     // Show or Hide UI 
     public void SetActive(bool isActive)
     {
         nextLevelButton.gameObject.SetActive(isActive);
         coinPrefab.gameObject.SetActive(isActive);
         coinDestination.gameObject.SetActive(isActive);
-        congratulations.SetActive(isActive);
         coinsAmountText.gameObject.SetActive(isActive);
         finishText.gameObject.SetActive(isActive);
+
         if(isActive)
             StartCoroutine(StartCoinsAnimation());
     }
@@ -56,5 +46,13 @@ public class NextLevelUIController : MonoBehaviour
             coinsAmountText.text = initialCoins.ToString();
             yield return new WaitForSeconds(pauseBetweenCoinsInstantiation);
         }
+    }
+
+    // Click button "Next level" when finish the level successfully
+    public void OnNextLevel()
+    {
+        DataManager.Instance.GetNextLevelNumberAndUpdateLevel();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

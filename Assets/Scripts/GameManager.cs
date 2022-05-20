@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameUIController s_gameUIController;
 
     private static PlayerController playerController;
+    [SerializeField] private GameObject[] levels;
 
     public enum GameModes
     {
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
         s_gameUIController = GetComponent<GameUIController>();
 
         CurrentMode = GameModes.Start;
+        int levelIndex = DataManager.Instance.GetCurrentLevelNumber();
+        Instantiate(levels[levelIndex]);
     }
 
     public static bool IsGameActive()

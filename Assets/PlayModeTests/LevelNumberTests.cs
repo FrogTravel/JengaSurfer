@@ -58,4 +58,25 @@ public class LevelNumberTests
             Assert.AreEqual(levels5Order[i], dm.GetNextLevelNumberAndUpdateLevel());
         }
     }
+
+    int[] levels4TotalOrder = { 0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 };
+    [UnityTest]
+    public IEnumerator GetCurrentLevel4TotalLevels()
+    {
+        yield return null;
+
+        GameObject gameObject = new GameObject();
+
+        gameObject.AddComponent<DataManager>();
+
+        DataManager dm = gameObject.GetComponent<DataManager>();
+        dm.ResetData();
+        dm.SetTotalNumberOfLevels(4);
+
+        for(int i = 0; i < levels4TotalOrder.Length; i++)
+        {
+            Assert.AreEqual(levels4TotalOrder[i], dm.GetCurrentLevelNumber());
+            dm.UpdateLevelByOne();
+        }
+    }
 }

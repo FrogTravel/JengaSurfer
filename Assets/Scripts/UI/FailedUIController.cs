@@ -16,12 +16,9 @@ public class FailedUIController : MonoBehaviour
         restartButton.gameObject.SetActive(isActive);
     }
 
-
     // Click button "Restart" when lose a game 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.CurrentMode = GameManager.GameModes.Start;
     }
-
 }

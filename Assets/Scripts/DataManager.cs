@@ -1,6 +1,5 @@
 using UnityEngine;
-using System.IO;
-using UnityEngine.SceneManagement;
+
 
 public class DataManager : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private int _currentLevel;
     [SerializeField] private int _totalNumberOfLevels;
+    private int _maxLevel;
 
     public int CoinsAmount;
 
@@ -23,17 +23,26 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(Instance);
         LoadData();
+        _maxLevel = _totalNumberOfLevels - 1;
 
-        ResetData(); //TODO remove!!
-
-        SceneManager.LoadScene(_currentLevel);
+        ResetData();
     }
 
     public int GetCurrentLevelNumber()
     {
-        return _currentLevel;
+        Debug.Log(_currentLevel + " " + _maxLevel);
+        if (_currentLevel < _maxLevel)
+        {
+            return _currentLevel;
+        }
+        else
+        {
+            int levelMod = (_currentLevel % _maxLevel);
+            return levelMod == 0 ? _maxLevel : levelMod;
+        }
     }
 
+    // Update level number and save it, because the scene will be recreated
     // Example of level computation
     //   | mod 3 | res |
     // 0 | 0     | 0   | 0
@@ -48,15 +57,15 @@ public class DataManager : MonoBehaviour
     // 9 | 0     | 0   | 3
     public int GetNextLevelNumberAndUpdateLevel()
     {
-        if (_currentLevel < _totalNumberOfLevels)
-        {
-            return ++_currentLevel;
-        }
-        else
-        {
-            int levelMod = (++_currentLevel % _totalNumberOfLevels);
-            return levelMod == 0 ? _totalNumberOfLevels : levelMod;
-        }
+        _currentLevel++;
+        SaveData();
+
+        return GetCurrentLevelNumber();
+    }
+
+    public void UpdateLevelByOne()
+    {
+        _currentLevel++;
     }
 
     public void SaveData()
@@ -75,7 +84,8 @@ public class DataManager : MonoBehaviour
 
     public void SetTotalNumberOfLevels(int levels)
     {
-        _totalNumberOfLevels = levels - 1;
+        _totalNumberOfLevels = levels;
+        _maxLevel = _totalNumberOfLevels - 1;
     }
 
     public void ResetData()

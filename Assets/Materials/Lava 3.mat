@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lava 2
+  m_Name: Lava 3
   m_Shader: {fileID: -6465566751694194690, guid: 569287ca3d95847c888bcaec970bd2b4,
     type: 3}
   m_ShaderKeywords: 
@@ -124,7 +124,7 @@ Material:
     m_Colors:
     - Color_6f5794d9bb1945f3a359b1980cdd7dd3: {r: 1, g: 0.1967075, b: 0, a: 0}
     - Color_b1abd6de75f34d4882d225bb65b7577a: {r: 0, g: 0, b: 0, a: 1}
-    - Vector2_0596b717319f4fab9242208b444efb5d: {r: 2, g: 3, b: 0, a: 0}
+    - Vector2_0596b717319f4fab9242208b444efb5d: {r: 1.6, g: 1.6, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
